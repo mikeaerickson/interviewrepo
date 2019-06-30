@@ -1,0 +1,229 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jobs</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> 
+
+    </script> 
+    <script src= "lib/easytimer/dist/easytimer.min.js"></script>
+    <script>
+    var timerInstance = new easytimer.Timer();
+    </script>
+  </head>
+
+
+<body onkeypress="handleEnter(event)">
+<div class="test">
+
+<style>
+
+    body {
+      margin: 0;
+    }
+    .test {
+      background-color: #343A40;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+
+    .mySlides {
+      display: block;
+    }
+
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .fade {
+      -webkit-animation-name: fade;
+      -webkit-animation-duration: 1.5s;
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @-webkit-keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+
+    a.custom-card,
+    a.custom-card:hover {
+      color: inherit;
+    }
+</style>
+
+<style type="text/css">
+  /*Rules for sizing the icon*/
+  .material-icons.md-18 { font-size: 18px; }
+  .material-icons.md-24 { font-size: 24px; }
+  .material-icons.md-36 { font-size: 36px; }
+  .material-icons.md-48 { font-size: 80px; }
+</style>
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="p-3 mb-2 bg-dark text-white"><p class="text-left text-muted"><font size="+3"><a href="{% url 'home' %}" class="custom-card"><i class="material-icons md-36">home</i></a></font></p></div>
+
+<br><br><br><br><br><br><br><br>
+<div class="container">
+  <div class="col-12">
+    
+    <div class="slideshow-container">
+        <div class="mySlides">
+          <div style="height: 200px;">
+           <p class="text-center text-light"><font size="+3">Press ENTER to start the interview<BR><BR> <i class="material-icons">subdirectory_arrow_right</i></font></p>     
+          </div>
+          <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+               <p class="text-center text-muted"><font size="+1"><br></font></p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides">
+          <div style="height: 200px;">
+            <p class="text-center text-light"><font size="+3">Tell me about yourself.<BR><BR> </font></p>  
+          </div>   
+                <div class="container">
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+               <p class="text-center text-muted"><font size="+1">Similar to a questions asked everywhere, 2019</font></p>
+            </div>
+        </div>
+      </div>
+        </div>
+    </div>
+
+
+    {% for question in questions %}
+    <div class="mySlides">
+      <div style="height: 200px;">
+        <p class="text-center text-light"><font size="+3">{{ question.text }}<BR><br> </font></p>
+      </div>
+      <div class="container">
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+               <p class="text-center text-muted"><font size="+1">Similar to a question asked at {{ question.company }}, {{ question.date }}</font></p>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}  
+  </div>
+
+
+
+    <p class="text-center text-muted"><font size="+2"><label id="minutes">00</label><label id="colon">:</label><label id="seconds">00</label></font></p>
+  </div>
+</div>
+
+
+<script>
+
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var colonLabel = document.getElementById("colon");
+var totalSeconds=0
+
+minutesLabel.style.display = "none"; 
+secondsLabel.style.display = "none"; 
+colonLabel.style.display = "none"; 
+
+setInterval(setTime, 1000);
+
+minutesLabel.style.display = "inline"; 
+secondsLabel.style.display = "inline"; 
+colonLabel.style.display = "inline";
+
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+  return;
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function handleEnter(e){
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+
+
+        showSlides(slideIndex += 1);
+        
+
+    }
+}
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+
+function showSlides(n) {
+
+
+
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1} 
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none"; 
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block"; 
+  dots[slideIndex-1].className += " active";
+  return;
+
+}
+
+</script>
+
+
+
+</body>
+</div>
+</html>

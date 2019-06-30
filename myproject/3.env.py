@@ -1,0 +1,1 @@
+SECRET_KEY = 'c@f=(1h(p9(ej@r56mgwcvw39jpu2s$0o4s71f1p0kg&fg0!bp'

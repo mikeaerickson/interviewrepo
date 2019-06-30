@@ -1,0 +1,44 @@
+import csv
+import os
+from questions.models import Question, Job
+with open('pmqs.csv') as csvfile:
+	reader=csv.reader(csvfile)
+	for row in reader:
+		q = Question(text=row[0], company=row[1], date=row[2], belongs_to = Job.objects.get(id=2))
+		q.save()
+
+with open('sweqs.csv') as csvfile2:
+	reader=csv.reader(csvfile2)
+	for row in reader:
+		q = Question(text=row[0], company=row[1], date=row[2], belongs_to = Job.objects.get(id=3))
+		q.save()
+
+import csv
+import os
+from questions.models import Question, Job
+with open('dsqs.csv') as csvfile:
+	reader=csv.reader(csvfile)
+	for row in reader:
+		q = Question(text=row[0], company=row[1], date=row[2], belongs_to = Job.objects.get(id=1))
+		q.save()
+
+with open('progmanqs.csv') as csvfile2:
+	reader=csv.reader(csvfile2)
+	for row in reader:
+		q = Question(text=row[0], company=row[1], date=row[2], belongs_to = Job.objects.get(id=4))
+		q.save()
+
+import csv
+import os
+from questions.models import Question, Job
+with open('uxdqs.csv') as csvfile:
+	reader=csv.reader(csvfile)
+	for row in reader:
+		q = Question(text=row[0], company=row[1], date=row[2], belongs_to = Job.objects.get(id=5))
+		q.save()
+
+with open('qs.csv') as csvfile2:
+	reader=csv.reader(csvfile2)
+	for row in reader:
+		q = Question(text=row[0], company=row[1], date=row[2], belongs_to = Job.objects.get(id=6))
+		q.save()

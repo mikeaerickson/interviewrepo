@@ -1,0 +1,70 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jobs</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+  <body>
+    <div class="p-3 mb-2 bg-dark text-white"></div>
+<br><Br><br><br>
+
+<p class="display-3 text-muted text-center">
+   What are you interviewing for?</p><br><br>
+
+
+
+
+<style>
+a.custom-card {
+  color: inherit;
+}
+
+
+a.custom-card:hover {
+  color: #777777;
+}
+
+
+
+.text-large {
+  font-size: 150%;
+}
+
+.ml-1 {
+  margin-left: ($spacer * .25) !important;
+}
+
+
+
+</style>
+
+<style type="text/css">
+/*Rules for sizing the icon*/
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 80px; }
+</style>
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="container">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {% for job in jobs %}
+  <a href="{% url 'interview' job.short %}" class="custom-card">
+    <div class="card ml-1 mb-2" style="width: 15rem; display: inline-block">
+      <div class="card-body">
+        <h5 class="card-title">{{ job.name }}</h5><br>
+        <p class="text-center"><i class="material-icons md-48">{{ job.icon }}</i></p><br>
+      </div>
+    </div>
+  </a>
+
+
+{% endfor %}
+
+</div>
+
+  </body>
+</html>
